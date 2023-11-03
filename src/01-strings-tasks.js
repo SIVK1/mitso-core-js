@@ -202,6 +202,14 @@ function getRectangleString(/* width, height */) {
   throw new Error('Not implemented');
 }
 
+// function getRectangleString(width, height) {
+//   const topBottom = '┌' + '─'.repeat(width - 2) + '┐'; // Верхняя и нижняя границы прямоугольника
+//   const sides = '│' + ' '.repeat(width - 2) + '│'; // Боковые границы прямоугольника
+//   const rectangle = topBottom + '\n' + sides.repeat(height - 2) + '\n' + topBottom;
+
+//   return rectangle;
+// }
+
 /**
  * Encode specified string with ROT13 cipher
  * See details:  https://en.wikipedia.org/wiki/ROT13
