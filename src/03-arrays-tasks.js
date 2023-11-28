@@ -603,11 +603,20 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const halfLength = Math.floor(arr.length / 2);
-  const firstHalf = arr.slice(0, halfLength);
-  const secondHalf = arr.slice(halfLength, arr.length);
+  const len = arr.length;
+  if (len <= 1) {
+    return arr;
+  }
 
-  return secondHalf.concat(firstHalf);
+  const middleIndex = Math.floor(len / 2);
+
+  const head = arr.slice(0, middleIndex);
+  const middle = len % 2 === 0 ? [] : [arr[middleIndex]];
+  const tail = arr.slice(middleIndex + (len % 2));
+
+  const swappedArray = tail.concat(middle, head);
+
+  return swappedArray;
 }
 
 module.exports = {
