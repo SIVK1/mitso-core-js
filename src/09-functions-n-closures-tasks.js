@@ -154,20 +154,15 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  return function (...args) {
-    const functionName = func.name || 'Anonymous Function';
-    const argsString = args.map((arg) => JSON.stringify(arg)).join(', ');
+  return function wrappedFunction(...args) {
+    const argsString = args.map((a) => JSON.stringify(a)).join(',');
+    const functionName = func.name || 'anonymous';
 
     logFunc(`${functionName}(${argsString}) starts`);
+    const result = func.apply(this, args);
+    logFunc(`${functionName}(${argsString}) ends`);
 
-    try {
-      const result = func(...args);
-      logFunc(`${functionName}(${argsString}) ends`);
-      return result;
-    } catch (error) {
-      logFunc(`${functionName}(${argsString}) ends with an error: ${error.message}`);
-      throw error;
-    }
+    return result;
   };
 }
 
